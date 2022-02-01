@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="2" name="RiceCooker_ES10_V33_B47" persistent=".\RiceCooker_ES10_ReleaseV_B56.cywrk" platform="NOT_USED">
+<current_project name=".\RiceCooker_ES10_V33_B47.cydsn\RiceCooker_ES10_V33_B47.cyprj" />
+<wrkspc_folders />
+<files />
+<projects>
+<name_val_pair name="RiceCooker_ES10_V33_B47" v=".\RiceCooker_ES10_V33_B47.cydsn\RiceCooker_ES10_V33_B47.cyprj" />
+</projects>
+<workspace_id v="61f862e6-2130-42bf-9450-3892dfb0a5d5" />
+<WriteAppVersionLastSavedWith v="2.50.0.47" />
+<WriteAppMarketingVersionLastSavedWith v="2.50 Build 47" />
+<CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjDependencyList" version="3">
+<wrkspc_dependencies />
+</CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
+<CyGuid_63b68103-67f5-4406-8da6-5c8625765b82 type_name="CyDesigner.Common.ProjMgmt.Model.CyIgnoredSystemDepsList" version="1">
+<wrkspc_dependencies />
+</CyGuid_63b68103-67f5-4406-8da6-5c8625765b82>
+</CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd>
+</CyXmlSerializer>

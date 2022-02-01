@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BuiltInTabDisplayName" xml:space="preserve">
+    <value>Built-in</value>
+  </data>
+  <data name="ActualBitRateDisplayFormat" xml:space="preserve">
+    <value>Up to: {0}</value>
+  </data>
+  <data name="ClockDisplayUnknown" xml:space="preserve">
+    <value>UNKNOWN</value>
+  </data>
+  <data name="ErrorMsgMedDisMiso" xml:space="preserve">
+    <value>Oversampling factor must be between 3 and 16 when median filter is disabled and late MISO sample is enabled.</value>
+  </data>
+  <data name="ErrorMsgMedDisMisoDis" xml:space="preserve">
+    <value>Oversampling factor must be between 6 and 16 when median filter and late MISO sample are disabled.</value>
+  </data>
+  <data name="ErrorMsgMedMiso" xml:space="preserve">
+    <value>Oversampling factor must be between 4 and 16 when median filter and late MISO sample are enabled.</value>
+  </data>
+  <data name="ErrorMsgMedMisoDis" xml:space="preserve">
+    <value>Oversampling factor must be between 8 and 16 when median filter is enabled and late MISO sample is disabled.</value>
+  </data>
+  <data name="ErrorValueLimit" xml:space="preserve">
+    <value>Value must be between {0} and {1}.</value>
+  </data>
+  <data name="ErrorValueLimitBufferSize" xml:space="preserve">
+    <value>Value must be between {0} and maximum available memory in device.</value>
+  </data>
+  <data name="EZI2CBasicTabDisplayName" xml:space="preserve">
+    <value>EZI2C Basic</value>
+  </data>
+  <data name="GeneralTabDisplayName" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="HclkError" xml:space="preserve">
+    <value>HF_CLK is undefined or has been changed. Please, open {0} configuration dialog to update Data Rate.</value>
+  </data>
+  <data name="I2CTabDisplayName" xml:space="preserve">
+    <value>I2C</value>
+  </data>
+  <data name="SPIAdvancedTabDisplayName" xml:space="preserve">
+    <value>SPI Advanced</value>
+  </data>
+  <data name="SPIBasicTabDisplayName" xml:space="preserve">
+    <value>SPI Basic</value>
+  </data>
+  <data name="UARTConfigTabDisplayName" xml:space="preserve">
+    <value>UART Basic</value>
+  </data>
+  <data name="BaudRateValueError" xml:space="preserve">
+    <value>Baud rate must be between {0} and {1} kbps.</value>
+  </data>
+  <data name="HclkError1" xml:space="preserve">
+    <value>HF_CLK is undefined or has been changed. Please, open {0} configuration dialog to update Data Rate.</value>
+  </data>
+  <data name="I2CNotContainSlave" xml:space="preserve">
+    <value>The I2C FF instance '{0}' is not configured as Slave or Multi-Master-Slave, but has been chosen as the bootloader IO component.</value>
+  </data>
+  <data name="OvsFactorFilterDisabledError" xml:space="preserve">
+    <value>Oversampling factor must be between {0} and {1} when median filter is disabled.</value>
+  </data>
+  <data name="OvsFactorFilterEnabledError" xml:space="preserve">
+    <value>Oversampling factor must be between {0} and {1} when median filter is enabled.</value>
+  </data>
+  <data name="OvsHighFilterDisabledError" xml:space="preserve">
+    <value>Oversampling factor high must be at least {0} when median filter is disabled.</value>
+  </data>
+  <data name="OvsHighFilterEnabledError" xml:space="preserve">
+    <value>Oversampling factor high must be at least {0} when median filter is enabled.</value>
+  </data>
+  <data name="OvsHighOutOfRangeError" xml:space="preserve">
+    <value>Oversampling factor high must be equal to Oversamplig factor - Oversampling factor low</value>
+  </data>
+  <data name="OvsLowFilterDisabledError" xml:space="preserve">
+    <value>Oversampling factor low must be at least {0} when median filter is disabled.</value>
+  </data>
+  <data name="OvsLowFilterEnabledError" xml:space="preserve">
+    <value>Oversampling factor low must be at least {0} when median filter is enabled.</value>
+  </data>
+  <data name="OvsLowOutOfRangeError" xml:space="preserve">
+    <value>Oversampling factor low must be equal to Oversamplig factor - Oversampling factor high</value>
+  </data>
+  <data name="I2CSlaveAddressError" xml:space="preserve">
+    <value>I2C slave address must be between {0} and {1}. Other addresses are not allowed by the I2C spec.</value>
+  </data>
+  <data name="I2CSlaveAddressMaskError" xml:space="preserve">
+    <value>I2C slave address mask must be between {0} and {1}.</value>
+  </data>
+  <data name="SlaveAddressMaskOddError" xml:space="preserve">
+    <value>The value of slave address mask must be even.</value>
+  </data>
+  <data name="THiError" xml:space="preserve">
+    <value>Calculated THi = {0} ns less than tHigh = {1} ns defined by I2C spec for fSCL = {2} KHz. Please increase oversampling factor high.</value>
+  </data>
+  <data name="TLoError" xml:space="preserve">
+    <value>Calculated TLo = {0} ns less than tLow = {1} ns defined by I2C spec for fSCL = {2} KHz. Please increase oversampling factor low.</value>
+  </data>
+  <data name="UARTAdvancedTabDisplayName" xml:space="preserve">
+    <value>UART Advanced</value>
+  </data>
+  <data name="EZSPIBasicTabDisplayName" xml:space="preserve">
+    <value>EZSPI Basic</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Motorola_00" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAbEAAACACAMAAACyX6c/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAMAUExURQAAAAAASAAAdABISABIdEgAAHQAAEgASEgAdHQASHQAdEh0dHRISHRIdHR0SHR0dAAA
+        /wBInAB0nAB0v0hInEh0nEh0v3RInEic4HSc4HS//5xIAL90AJxISJxIdL90SJx0nJycdOCcSOCcdOC/
+        dP+/dJycv7+//5zgv5zg/7/////gnP//v+D////g4P//4P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX3
+        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
+</value>
+  </data>
+  <data name="UARTOvsFactorError" xml:space="preserve">
+    <value>Oversampling factor must be between {0} and {1}.</value>
+  </data>
+  <data name="UARTRXBufferSizeError" xml:space="preserve">
+    <value>UART RX buffer size must be between {0} and maximum memory size in the system.</value>
+  </data>
+  <data name="UARTTXBufferSizeError" xml:space="preserve">
+    <value>UART TX buffer size must be between {0} and maximum memory size in the system.</value>
+  </data>
+  <data name="DataRateValueError" xml:space="preserve">
+    <value>Data rate value must be between {0} and {1}.</value>
+  </data>
+  <data name="EZI2CSlaveAddressError" xml:space="preserve">
+    <value>EZI2C slave address must be between {0} and {1}.Other addresses are not allowed by the EZI2C spec.</value>
+  </data>
+  <data name="EZI2CSlaveAddressMaskError" xml:space="preserve">
+    <value>EZI2C slave address mask must be between {0} and {1}.</value>
+  </data>
+  <data name="EZSPIBitRateValueError" xml:space="preserve">
+    <value>EZSPI bit rate value must be between {0} and {1}.</value>
+  </data>
+  <data name="EZSPIBitRateValueParseError" xml:space="preserve">
+    <value>EZSPI bit rate value invalid format.</value>
+  </data>
+  <data name="UARTBufferSizeValueFormatError" xml:space="preserve">
+    <value>Buffer size value has invalid format.</value>
+  </data>
+  <data name="SCBTabDisplayName" xml:space="preserve">
+    <value>SCB</value>
+  </data>
+  <data name="ClockValueError" xml:space="preserve">
+    <value>Clock value must be between {0} and {1}.</value>
+  </data>
+  <data name="ActualBaudRateDisplayFormat" xml:space="preserve">
+    <value>Up to: {0}</value>
+  </data>
+  <data name="BaudRateIrDAValueError" xml:space="preserve">
+    <value>The baud rate value must be 115200, 57600, 38400,19200, 9600, 2400 or 1200 kbps when IrDA mode is selected.</value>
+  </data>
+  <data name="EZI2CAdvancedTabDisplayName" xml:space="preserve">
+    <value>EZI2C Advanced</value>
+  </data>
+  <data name="EZSPIAdvancedTabDisplayName" xml:space="preserve">
+    <value>EZSPI Advanced</value>
+  </data>
+  <data name="ActualDataRateDisplayFormat" xml:space="preserve">
+    <value>Up to: {0}</value>
+  </data>
+  <data name="UARTAddressFormatError" xml:space="preserve">
+    <value>The value must be between {0} and {1}.</value>
+  </data>
+  <data name="BootloaderSupportModeFailError" xml:space="preserve">
+    <value>Current SCB mode is not supported by the bootloader.</value>
+  </data>
+</root>

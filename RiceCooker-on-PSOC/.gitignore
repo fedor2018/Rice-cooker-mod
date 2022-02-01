@@ -1,0 +1,16 @@
+*.~md
+CortexM0
+Generated_Source
+ARM_GCC_*
+*.rpt
+*.log
+*.svd
+*.cyfit
+*.cycdx
+codegentemp
+Export
+*.cywrk.*
+*.cyprj.*
+*timing.html
+*.fedor
+ComponentUpdateLog.txt

@@ -1,0 +1,19 @@
+#mode
+0x20
+0xc
+#bias
+0x21
+0x13
+#contrast
+0x21
+128+value
+#cursor
+0x20
+128+x{0..83}
+64+y{0..5}
+#send data
+byte string
+0x0
+#temp
+0x21
+4+{0..3}
