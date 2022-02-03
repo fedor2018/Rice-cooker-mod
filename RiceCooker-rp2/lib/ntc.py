@@ -3,7 +3,7 @@ from math import log
 
 class NTC():
     """ """
-    def __init__(self, adc=None, Vref=3.3, R=10000, Ro=10000.0, To=25.0, beta=3950.0, V=5, Vt=None, adc_t=None ):
+    def __init__(self, adc=None, Vref=3.3, R=10000, Ro=10000.0, To=25.0, beta=3950.0, V=3.3, Vt=None, adc_t=None ):
         self._adc=adc
         self._vref=Vref
         self._r=R
@@ -53,4 +53,4 @@ class NTC():
             steinhart = (1.0 / steinhart) - 273.15          # Invert, convert to C
             return steinhart
         except:
-            return 999
+            return 999.0
