@@ -1,5 +1,13 @@
-import config
+import lib.config as c
+import _thread
 
+def bg_thread():
+    pass
+
+_thread.start_new_thread(bg_thread, ())
+
+#main thread
+pass
 
 """
 import fsm_white

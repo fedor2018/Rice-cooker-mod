@@ -28,7 +28,7 @@ class rc_lcd():
     def info(self, *msg):
         """ first info """
         n=1
-        for m in *msg:
+        for m in msg:
             self.print_str(m, 0, 1, '{:^}')
             n+=2
         time.sleep(2)

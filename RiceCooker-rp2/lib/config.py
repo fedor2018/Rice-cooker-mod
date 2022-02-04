@@ -1,8 +1,9 @@
-from PCD8544 import PCD8544
-from ntc import *
+import pcd8544
+import ntc
 import time
 from machine import Pin, Timer
 import rc_lcd
+import Switch
 
 """
 """
@@ -16,4 +17,13 @@ pcd = PCD8544(spi_id=0, dc=1, din=0, clk=2, dout=3, rst=4)
 print(pcd._spi)
 pcd.begin()
 lcd=rc_lcd(pcd)
-lcd.ver("Rice cooker", "ver. 1.0", "fedor2018")
+lcd.info("Rice cooker", "ver. 1.0", "fedor2018")
+
+btn={}
+btn['select']=Switch(Pin(5, machine.Pin.IN, machine.Pin.PULL_UP))
+btn['up']=Switch(Pin(6, machine.Pin.IN, machine.Pin.PULL_UP))
+btn['down']=Switch(Pin(7, machine.Pin.IN, machine.Pin.PULL_UP))
+btn['start']=Switch(Pin(8, machine.Pin.IN, machine.Pin.PULL_UP))
+btn['cancel']=Switch(Pin(9, machine.Pin.IN, machine.Pin.PULL_UP))
+btn['unknown']=Switch(Pin(10, machine.Pin.IN, machine.Pin.PULL_UP))
+
