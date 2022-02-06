@@ -24,14 +24,15 @@ class rc_lcd():
     def print_str(self, str, x=0, y=0, fmt='{}'):
         self.pcd.setxy(x,y)
         self.pcd.LPrint(fmt.format(str))
+#         print("{} {} {}".format(x,y,str))
         
     def info(self, *msg):
         """ first info """
-        n=1
+        n=0
         for m in msg:
-            self.print_str(m, 0, 1, '{:^}')
-            n+=2
+            self.print_str(m, 0, n, '{:^14}')
+            n+=1
         time.sleep(2)
-        self.pcd.LClear()
+#         self.pcd.LClear()
         
         
