@@ -5,6 +5,7 @@ from machine import Pin, Timer, ADC
 from rc_lcd import *
 from Switch import *
 from ws2812b import ws2812b
+from led_zero import led_zero
 
 """
 """
@@ -30,5 +31,5 @@ btn['start']=Switch(Pin(8, Pin.IN, Pin.PULL_UP))
 btn['cancel']=Switch(Pin(9, Pin.IN, Pin.PULL_UP))
 btn['unknown']=Switch(Pin(10, Pin.IN, Pin.PULL_UP))
 
-led=ws2812b(1, 0, 16)
-led.fill(255,0,0)
+led=led_zero()
+led.set_color('red')
