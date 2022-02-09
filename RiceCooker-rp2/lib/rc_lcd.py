@@ -16,10 +16,13 @@ Tall,Tstate - 00:00 00:00
 relay - 1/16
 """
 import time
+from machine import RTC
 
 class rc_lcd():
     def __init__(self, pcd=None):
         self.pcd=pcd
+        self.rtc = RTC()
+        self.old=time.time()
         
     def print_str(self, str, x=0, y=0, fmt='{}'):
         self.pcd.setxy(x,y)
@@ -34,5 +37,24 @@ class rc_lcd():
             n+=1
         time.sleep(2)
 #         self.pcd.LClear()
-        
-        
+
+    def temp(self, t):
+        self.pcd.setxy(0,2)
+        self.pcd.LPrint("{: <#6.1f}{: >#8.1f}".format(t[0],t[1]))
+        self.pcd.setxy(8,4)
+        self.pcd.LPrint("{: >#6.1f}".format(t[2]))
+    
+    def alltime(self):
+        self.pcd.setxy(8,3)
+#         print(self.rtc.datetime())
+        n=time.time()-self.old
+#         s=' ' if s[0]==':' else s=':'
+        s=' '
+        if s.find(':'):
+            s=' '
+        else:
+            s=':'
+        self.pcd.LPrint("{:02d}{:1s}{:02d}".format(int(n/60), s, n-int(n/60)))
+    
+    
+                        

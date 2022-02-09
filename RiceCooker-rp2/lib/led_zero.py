@@ -23,10 +23,10 @@ class led_zero():
         self.brightness = 0.1
         self.COLORS={
             'BLACK': (0, 0, 0),
-            'RED': (255, 0, 0),
+            'RED':   (255, 0, 0),
             'YELLOW': (255, 150, 0),
             'GREEN': (0, 255, 0),
-            'CYAN': (0, 255, 255),
+            'CYAN': (0, 0x8b, 0x8b),
             'BLUE': (0, 0, 255),
             'PURPLE': (180, 0, 255),
             'WHITE': (255, 255, 255),
@@ -38,8 +38,14 @@ class led_zero():
             self.brightness=b
         ar=0
         color=self.COLORS[c.upper()]
-        for i in range(3):
-            ar+=int(color[2-i] * self.brightness)<<(8*i)
-        sm.put(ar, 8)
+
+        ar+=int(color[2] * self.brightness)<<(0) #blue
+        ar+=int(color[1] * self.brightness)<<(16)#green
+        ar+=int(color[0] * self.brightness)<<(8) #red
+#         for i in range(3):
+#             ar+=int(color[2-i] * self.brightness)<<(8*i)
+#             print("{:d}:{:x}:{:x}:{:x}".format(i,ar,color[2-i],int(color[2-i] * self.brightness)))
+#         print("{:06x}".format(ar))
+        self.sm.put(ar, 8)
 #         time.sleep_ms(10)
 

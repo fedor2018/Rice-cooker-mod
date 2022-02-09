@@ -18,7 +18,7 @@ lid=   NTC(adc=ADC(Pin(27)), R=R1, Ro=47000, beta=3740, adc_t=adc, Vt=VT)
 heater=NTC(adc=ADC(Pin(28)), R=R2, Ro=90500, beta=3950, adc_t=adc, Vt=VT)
 
 pcd = PCD8544(spi_id=0, dc=1, din=3, clk=2, dout=0, rst=4)
-print(pcd._spi)
+# print(pcd._spi)
 pcd.begin()
 lcd=rc_lcd(pcd)
 lcd.info("Rice cooker", "ver. 1.0", "fedor2018","","01234567890123")
@@ -32,4 +32,8 @@ btn['cancel']=Switch(Pin(9, Pin.IN, Pin.PULL_UP))
 btn['unknown']=Switch(Pin(10, Pin.IN, Pin.PULL_UP))
 
 led=led_zero()
-led.set_color('red')
+
+def get_temp():
+    return (pan.r_UP(), lid.r_UP(), heater.r_UP(), pan._vref)
+
+    
