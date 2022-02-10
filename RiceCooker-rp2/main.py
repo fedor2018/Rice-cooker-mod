@@ -1,37 +1,40 @@
 import config as c
 import _thread
 import time
-
+t=(0, 0, 0, 0)
+stop=0
 def bg_thread():
+    global t, stop
     while 1:
+        t=c.get_temp()
+        print(t)
         c.led.set_color('black')
-        time.sleep(1)
+        time.sleep_ms(500)
         c.led.set_color('red')
-        time.sleep(1)
-
+        time.sleep_ms(500)
+        if stop: _thread.exit()
 
 _thread.start_new_thread(bg_thread, ())
-
 #main thread
+# try:
 time.sleep(1)
 c.pcd.LClear()
 while 1:
-    t=c.get_temp()
-    print(t)
+#     print(t)
     c.lcd.temp(t)
     c.lcd.alltime()
-    time.sleep(1)
-    pass
-pass
+    c.rc.menu(c.b.keys)
+    c.rc.step(t[0], t[1])
+#     if len(c.b.keys):
+#         print(c.b.keys)
+#         c.b.keys.clear()
+#     c.get_btn()
+    c.lcd.fsm(c.rc)
+    time.sleep_ms(500)
+# except:
+#     print("stop")
+#     stop=1
 
-# time.sleep(1)
-# c.led.set_color('green')
-# time.sleep(1)
-# c.led.set_color('blue')
-# time.sleep(1)
-# c.led.set_color('cyan',0.2)
-# time.sleep(1)
-# c.led.set_color('WHITE',0.01)
 
 """
 import fsm_white

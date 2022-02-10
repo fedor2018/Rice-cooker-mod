@@ -12,7 +12,7 @@ mode - white|mixed|special|brown|congee
 state- pre|cook|steam|warm|error|boilx|
 est time - 00:00
 pan,lid,heater - XXX YYY ZZZ
-Tall,Tstate - 00:00 00:00
+Tall,Tstate - 00:00 > 00:00
 relay - 1/16
 """
 import time
@@ -23,6 +23,7 @@ class rc_lcd():
         self.pcd=pcd
         self.rtc = RTC()
         self.old=time.time()
+        self.s=' '
         
     def print_str(self, str, x=0, y=0, fmt='{}'):
         self.pcd.setxy(x,y)
@@ -48,13 +49,21 @@ class rc_lcd():
         self.pcd.setxy(8,3)
 #         print(self.rtc.datetime())
         n=time.time()-self.old
-#         s=' ' if s[0]==':' else s=':'
-        s=' '
-        if s.find(':'):
-            s=' '
-        else:
-            s=':'
-        self.pcd.LPrint("{:02d}{:1s}{:02d}".format(int(n/60), s, n-int(n/60)))
-    
-    
+        self.s=' ' if self.s==':' else ':'
+        d=divmod(n, 60)
+        self.pcd.LPrint("{:02d}{:1s}{:02d}".format(d[0], self.s, d[1]))
+
+    def conv_time(self, t):
+        d=divmod(t, 60)
+        return "{:02d}:{:02d}".format(d[0], d[1])
+        
+        
+    def fsm(self, fsm):
+        self.print_str(fsm.mode,0,0,"{: <#8s}")
+        self.print_str(fsm.state,0,3,"{: <#6s}")
+        self.print_str(fsm.LCD,8,0,"{: >#6s}")
+        self.print_str(fsm.relay,2,4,"{: ^#5s}")
+        t=fsm.get_time()
+        self.print_str(self.conv_time(t[0]), 0, 1)
+        self.print_str(self.conv_time(t[1]), 8, 1)
                         
