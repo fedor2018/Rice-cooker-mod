@@ -67,3 +67,8 @@ class rc_lcd():
         self.print_str(self.conv_time(t[0]), 0, 1)
         self.print_str(self.conv_time(t[1]), 8, 1)
                         
+    def relay(self, s):
+        str="*" if s else " "
+        self.print_str(str,0,4,"{:1s}")
+        
+        

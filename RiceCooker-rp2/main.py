@@ -30,6 +30,7 @@ while 1:
 #         c.b.keys.clear()
 #     c.get_btn()
     c.lcd.fsm(c.rc)
+    c.lcd.relay(c.rc.r.cur_state())
     time.sleep_ms(500)
 # except:
 #     print("stop")

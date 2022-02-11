@@ -1,8 +1,10 @@
 from time import time
+from relay import relay
+from buzzer import buzzer
 
-class rc_fsm():
+class rc_fsm(relay, buzzer):
     """ rice cooker finity state machine """
-    def __init__(self, fsm=None):
+    def __init__(self, fsm=None, pin_r=None, pin_b=None):
         self.state=""
         self.mode=""
         self.LCD=""
@@ -11,10 +13,12 @@ class rc_fsm():
         self.time=0 # T
         self.stime=0 # start time
         self.rtime=0 # run time
-        self.beep=0
+#         self.beep=0
         self.relay="0/0" # 2/16
         self.set_fsm(fsm)
-    
+        self.r=relay(pin_r)
+        self.b=buzzer(pin_b)
+
     def set_fsm(self, fsm):
         """ set current state """
         self.fsm=fsm
@@ -29,7 +33,7 @@ class rc_fsm():
         self.rtime=time()-self.stime
         t=time()-self.time
         for k in self.fsm[self.state].keys():
-            if type(self.fsm[self.state][k] is list):
+            if type(self.fsm[self.state][k]) is list:
                 lst=self.fsm[self.state][k]
                 if k=='T_gt':
                     for st in lst:
@@ -56,19 +60,24 @@ class rc_fsm():
         """ """
         self.state=""
         self.LCD=""
+        self.relay="0/0"
+        self.r.add_state(self.relay)
         if self.fsm is not None:
             if next.find('/')>0:
                 self.relay=next
+                self.r.add_state(self.relay)
+                self.r.run()
             elif next in self.fsm.keys():
                 print("{}=>{}".format(next,self.fsm[next]))
                 self.state=next
                 if next=='start': self.stime=time()
                 self.LCD=self.fsm[next]['LCD']
                 self.time=self.fsm[next].get('T', self.time)
-                self.beep=self.fsm[next].get('beep', 0)
-                print("{}: {} {} {}".format(self.state, self.LCD, self.time, self.beep))
+                self.b.buzz(self.fsm[next].get('beep', ""))
+                print("{}: {} {} {}".format(self.state, self.LCD, self.time, self.fsm[next].get('beep', ":")))
             else: #end
-                self.relay="0/0"
+#                 self.relay="0/0"
+#                 self.r.add_state(self.relay)
                 self.stime=0
 
     def menu(self, k): # pressed keys list

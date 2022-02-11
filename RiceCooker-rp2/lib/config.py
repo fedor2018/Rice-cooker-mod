@@ -19,8 +19,6 @@ pan=   NTC(adc=ADC(Pin(26)), R=R1, Ro=47000, beta=3740, adc_t=adc, Vt=VT)
 lid=   NTC(adc=ADC(Pin(27)), R=R1, Ro=47000, beta=3740, adc_t=adc, Vt=VT)
 heater=NTC(adc=ADC(Pin(28)), R=R2, Ro=90500, beta=3950, adc_t=adc, Vt=VT)
 
-r=relay(Pin(14, Pin.OUT))
-
 pcd = PCD8544(spi_id=0, dc=1, din=3, clk=2, dout=0, rst=4, pwm=15)
 # print(pcd._spi)
 pcd.begin()
@@ -31,7 +29,8 @@ lcd.info("Rice  cooker", "ver. 1.0", "fedor2018","","01234567890123")
 led=led_zero(0)
 b=btn_pio(1, {5:'select', 6:'up', 7:'down', 8:'cancel', 9:'none', 10:'start'})
 
-rc=rc_fsm(fsm)
+rc=rc_fsm(fsm, 14, 11)
+rc.b.buzz("200:2")
 
 def get_temp():
     return (pan.r_UP(), lid.r_UP(), heater.r_UP(), pan._vref)
