@@ -4,18 +4,23 @@ from buzzer import buzzer
 
 class rc_fsm(relay, buzzer):
     """ rice cooker finity state machine """
-    def __init__(self, fsm=None, pin_r=None, pin_b=None):
-        self.state=""
+    def __init__(self, fsm=(), pin_r=None, pin_b=None):
+        self.state="end"
         self.mode=""
         self.LCD=""
         self.pan=0 # current t pan
         self.lid=0 # t lid
-        self.time=0 # T
-        self.stime=0 # start time
-        self.rtime=0 # run time
+        self.T=time() # T
+        self.stime=time() # start time
+        self.rtime=time()-self.stime # run time
 #         self.beep=0
         self.relay="0/0" # 2/16
-        self.set_fsm(fsm)
+        self.fsm_list=fsm
+        for f in self.fsm_list:
+            __import__(f)
+        print(locals())
+        self.n=0
+        self.set_fsm(locals()[self.fsm_list[self.n].fsm])
         self.r=relay(pin_r)
         self.b=buzzer(pin_b)
 
@@ -31,13 +36,12 @@ class rc_fsm(relay, buzzer):
         if self.state=="":
             return
         self.rtime=time()-self.stime
-        t=time()-self.time
         for k in self.fsm[self.state].keys():
             if type(self.fsm[self.state][k]) is list:
                 lst=self.fsm[self.state][k]
                 if k=='T_gt':
                     for st in lst:
-                        if t > st[0]:
+                        if time() > st[0]+self.T:
                             self.next_state(st[1])
                 elif k=='pan_le':
                     for st in lst:
@@ -72,7 +76,8 @@ class rc_fsm(relay, buzzer):
                 self.state=next
                 if next=='start': self.stime=time()
                 self.LCD=self.fsm[next]['LCD']
-                self.time=self.fsm[next].get('T', self.time)
+                if 'T' in self.fsm[next]:
+                    self.T=time()
                 self.b.buzz(self.fsm[next].get('beep', ""))
                 print("{}: {} {} {}".format(self.state, self.LCD, self.time, self.fsm[next].get('beep', ":")))
             else: #end
@@ -80,22 +85,43 @@ class rc_fsm(relay, buzzer):
 #                 self.r.add_state(self.relay)
                 self.stime=0
 
+    def next_fsm(self):
+        pass
+
     def menu(self, k): # pressed keys list
 #         print(k)
         while k:
             key=k.pop(0)
 #             print("m: {}".format(key))
-            if key=='start':
-                self.next_state('start')
-            elif key=='cancel':
+            if key=='cancel':
                 self.next_state('end')
-#         k.clear()
-
+                k.clear()
+            if self.is_run:
+                pass
+            else:
+                if key=='start':
+                    self.next_state('start')
+                elif key=='select':
+                    self.n+=1
+                    if self.n >= len(self.fsm_list):
+                        self.n=0
+                    self.set_fsm(locals()[self.fsm_list[self.n].fsm])
+                    pass #import next fsm
+                elif key=='up':
+                    pass
+                elif key=='down':
+                    pass
+                
+ 
     def get_time(self):
         """ run, step """
 #         print("{}, {}, {}".format(self.rtime, self.stime, self.time))
         if self.stime>0:
-            return (self.rtime, time()-self.time)
+            return (time()-self.stime, time()-self.T)
         else:
             return (0,0)
-            
+ 
+    def is_run(self):
+        """ cooker in run """
+        return False if self.state == 'end' else True
+         

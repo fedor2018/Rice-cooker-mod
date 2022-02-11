@@ -21,20 +21,17 @@ time.sleep(1)
 c.pcd.LClear()
 while 1:
 #     print(t)
-    c.lcd.temp(t)
-    c.lcd.alltime()
-    c.rc.menu(c.b.keys)
-    c.rc.step(t[0], t[1])
-#     if len(c.b.keys):
-#         print(c.b.keys)
-#         c.b.keys.clear()
-#     c.get_btn()
-    c.lcd.fsm(c.rc)
-    c.lcd.relay(c.rc.r.cur_state())
-    time.sleep_ms(500)
-# except:
-#     print("stop")
-#     stop=1
+    try:
+        c.lcd.temp(t)
+        c.lcd.alltime()
+        c.rc.menu(c.b.keys)
+        c.rc.step(t[0], t[1])
+        c.lcd.fsm(c.rc)
+        c.lcd.relay(c.rc.r.cur_state())
+        time.sleep_ms(500)
+    except KeyboardInterrupt:
+        print("stop")
+        stop=1
 
 
 """

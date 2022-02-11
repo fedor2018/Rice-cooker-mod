@@ -7,7 +7,7 @@ from led_zero import led_zero
 from relay import relay
 from btn_pio import btn_pio
 from rc_fsm import rc_fsm
-from fsm_white import fsm
+# from fsm_white import fsm
 
 """
 """
@@ -29,7 +29,7 @@ lcd.info("Rice  cooker", "ver. 1.0", "fedor2018","","01234567890123")
 led=led_zero(0)
 b=btn_pio(1, {5:'select', 6:'up', 7:'down', 8:'cancel', 9:'none', 10:'start'})
 
-rc=rc_fsm(fsm, 14, 11)
+rc=rc_fsm(('fsm_white'), 14, 11)
 rc.b.buzz("200:2")
 
 def get_temp():
