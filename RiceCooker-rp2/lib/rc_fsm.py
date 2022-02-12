@@ -4,10 +4,11 @@ from buzzer import buzzer
 
 class rc_fsm(relay, buzzer):
     """ rice cooker finity state machine """
-    def __init__(self, fsm=(), pin_r=None, pin_b=None):
+    def __init__(self, pin_r=None, pin_b=None):
         self.state="end"
         self.mode=""
         self.LCD=""
+        self.fsm=None
         self.pan=0 # current t pan
         self.lid=0 # t lid
         self.T=time() # T
@@ -15,20 +16,28 @@ class rc_fsm(relay, buzzer):
         self.rtime=time()-self.stime # run time
 #         self.beep=0
         self.relay="0/0" # 2/16
-        self.fsm_list=fsm
-        for f in self.fsm_list:
-            __import__(f)
-        print(locals())
-        self.n=0
-        self.set_fsm(locals()[self.fsm_list[self.n].fsm])
+#         import gc
+#         gc.enable()
+#         print(gc.mem_alloc())
+        import os
+        self.fsm_list = [name[:-3] for name in os.listdir('fsm')
+                 if name.endswith('.py')]
+#         for f in fsm:
+#             print(f)
+#             self.fsm_list[f]=__import__("fsm."+f) #,globals(),locals(), [], 0)
+#         print(self.fsm_list) #['white'].fsm)
+#         print(gc.mem_alloc())
+#         self.n=0
+        self.set_fsm(self.fsm_list[-1])
         self.r=relay(pin_r)
         self.b=buzzer(pin_b)
 
-    def set_fsm(self, fsm):
+    def set_fsm(self, f):
         """ set current state """
-        self.fsm=fsm
-        if self.fsm is not None:
-            self.mode=self.fsm['mode']
+        i=__import__("fsm."+f,None,None,[f]).fsm
+#         print(i)
+        self.fsm=i
+        self.mode=self.fsm['mode']
         self.LCD=""
     
     def step(self, pan=0, lid=0):

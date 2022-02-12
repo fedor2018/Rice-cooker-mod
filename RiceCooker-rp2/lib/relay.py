@@ -5,7 +5,7 @@ from machine import Pin, Timer
 class relay():
     """ """
     def __init__(self, pin=None):
-        self.pin=Pin(pin_num, Pin.OUT) if type(pin) is int else pin
+        self.pin=Pin(pin, Pin.OUT) if type(pin) is int else pin
 #         self.pin=pin
         self.pin.value(0)
         self.on=0
