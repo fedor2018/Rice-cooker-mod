@@ -18,8 +18,8 @@ class buzzer():
             self.cnt=int(n[1])
             self.run_on()
 
-    def run_off(self, t):
-        print('b', end='')
+    def run_off(self, t=''):
+#         print('b', end='')
         self.pin.value(0)
         self.cnt-=1
         if self.cnt<=0:
@@ -27,7 +27,7 @@ class buzzer():
         else:
             self.tim.init(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_on)
         
-    def run_on(self):
+    def run_on(self, t=''):
 #         print("run on {} {} {}".format(self.len, self.cnt,self.tim))
         self.tim.init(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_off)
         self.pin.value(1)

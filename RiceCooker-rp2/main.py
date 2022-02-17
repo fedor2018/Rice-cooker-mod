@@ -19,7 +19,7 @@ _thread.start_new_thread(bg_thread, ())
 # try:
 time.sleep(1)
 c.pcd.LClear()
-while 1:
+while stop==0:
 #     print(t)
     try:
         c.lcd.temp(t)
@@ -32,7 +32,11 @@ while 1:
     except KeyboardInterrupt:
         print("stop")
         stop=1
-
+    except Exception as e:
+        print(e)
+        import sys
+        sys.print_exception(e)
+        stop=1
 
 """
 import fsm_white

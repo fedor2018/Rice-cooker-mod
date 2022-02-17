@@ -42,7 +42,7 @@ class rc_fsm(relay, buzzer):
     
     def step(self, pan=0, lid=0):
         """ """
-        if self.state=="":
+        if self.state=="" or self.state=='end':
             return
         self.rtime=time()-self.stime
         for k in self.fsm[self.state].keys():

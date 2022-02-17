@@ -30,7 +30,7 @@ led=led_zero(0)
 b=btn_pio(1, {5:'select', 6:'up', 7:'down', 8:'cancel', 9:'none', 10:'start'})
 
 rc=rc_fsm( 14, 11)
-# rc.b.buzz("200:2")
+rc.b.buzz("200:2")
 
 def get_temp():
     return (pan.r_UP(), lid.r_UP(), heater.r_UP(), pan._vref)
