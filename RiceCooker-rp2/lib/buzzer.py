@@ -9,7 +9,7 @@ class buzzer():
         self.pin=Pin(pin, Pin.OUT) if type(pin) is int else pin
         self.len=0 # beep/pause delay
         self.cnt=0 # beep counter
-        self.tim=Timer(-1)
+        self.tim=Timer()
         
     def buzz(self, s):
         n=s.split(':')
@@ -18,17 +18,19 @@ class buzzer():
             self.cnt=int(n[1])
             self.run_on()
 
-    def run_off(self):
+    def run_off(self, t):
+        print('b', end='')
         self.pin.value(0)
         self.cnt-=1
         if self.cnt<=0:
-            self.tim(-1)
+            self.tim.deinit()
         else:
-            self.tim(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_on)
+            self.tim.init(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_on)
         
     def run_on(self):
+#         print("run on {} {} {}".format(self.len, self.cnt,self.tim))
+        self.tim.init(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_off)
         self.pin.value(1)
-        self.tim(mode=Timer.ONE_SHOT, period=self.len, callback=self.run_off)
 
     def a(self, t):
         pass
