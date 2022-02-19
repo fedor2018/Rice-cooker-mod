@@ -5,18 +5,23 @@ t=(0, 0, 0, 0)
 stop=0
 def bg_thread():
     global t, stop
-    while 1:
-        t=c.get_temp()
-        print(t)
-        c.led.set_color('black')
-        time.sleep_ms(500)
-        c.led.set_color('red')
-        time.sleep_ms(500)
-        if stop: _thread.exit()
+    try:
+        while 1:
+            t=c.get_temp()
+    #         print(t)
+            c.led.set_color('black')
+            time.sleep_ms(500)
+            c.led.set_color('red')
+            time.sleep_ms(500)
+            if stop: _thread.exit()
+    except Exception as e:
+        print(e)
+        import sys
+        sys.print_exception(e)
+        stop=1
 
 _thread.start_new_thread(bg_thread, ())
 #main thread
-# try:
 time.sleep(1)
 c.pcd.LClear()
 while stop==0:

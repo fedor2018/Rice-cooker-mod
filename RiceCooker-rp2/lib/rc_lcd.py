@@ -69,6 +69,6 @@ class rc_lcd():
                         
     def relay(self, s):
         str="*" if s else " "
-        self.print_str(str,0,4,"{:1s}")
+        self.print_str(str,0,4)
         
         

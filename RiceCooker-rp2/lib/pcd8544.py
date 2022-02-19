@@ -121,11 +121,14 @@ class PCD8544():
         
     def LPrint (self, message):
         text = bytearray()
-        for letter in message:
-            i = (ord(letter) - 32) * 5
-            for b in range (0,5):
-                text.append(self.font[i+b])
-            text.append(0x00)
+        try:
+            for letter in message:
+                i = (ord(letter) - 32) * 5
+                for b in range (0,5):
+                    text.append(self.font[i+b])
+                text.append(0x00)
+        except:
+            print(message)
         self.data(text)
 
     def LSetY(self, y):

@@ -35,14 +35,14 @@ class rc_fsm(relay, buzzer):
     def set_fsm(self, f):
         """ set current state """
         i=__import__("fsm."+f,None,None,[f]).fsm
-#         print(i)
+        print(i)
         self.fsm=i
         self.mode=self.fsm['mode']
         self.LCD=""
     
     def step(self, pan=0, lid=0):
         """ """
-        if self.state=="" or self.state=='end':
+        if self.state not in self.fsm:
             return
         self.rtime=time()-self.stime
         for k in self.fsm[self.state].keys():
@@ -72,9 +72,9 @@ class rc_fsm(relay, buzzer):
     def next_state(self, next='end'):
         """ """
         self.state=""
-        self.LCD=""
         self.relay="0/0"
         self.r.add_state(self.relay)
+        print(next)
         if self.fsm is not None:
             if next.find('/')>0:
                 self.relay=next
@@ -88,24 +88,25 @@ class rc_fsm(relay, buzzer):
                 if 'T' in self.fsm[next]:
                     self.T=time()
                 self.b.buzz(self.fsm[next].get('beep', ""))
-                print("{}: {} {} {}".format(self.state, self.LCD, self.time, self.fsm[next].get('beep', ":")))
+                print("{}: {} {} {}".format(self.state, self.LCD, self.T, self.fsm[next].get('beep', ":")))
             else: #end
 #                 self.relay="0/0"
 #                 self.r.add_state(self.relay)
+                self.LCD=""
                 self.stime=0
 
     def next_fsm(self):
         pass
 
     def menu(self, k): # pressed keys list
-#         print(k)
+#         if len(k)>0: print(k)
         while k:
             key=k.pop(0)
-#             print("m: {}".format(key))
+            print("m: {} {}".format(key, self.is_run()))
             if key=='cancel':
                 self.next_state('end')
                 k.clear()
-            if self.is_run:
+            if self.is_run():
                 pass
             else:
                 if key=='start':
