@@ -1,12 +1,14 @@
 import config as c
 import _thread
+import gc
 import time
+
 t=(0, 0, 0, 0)
 stop=0
 def bg_thread():
     global t, stop
-    try:
-        while 1:
+    while 1:
+        try:
             t=c.get_temp()
     #         print(t)
             c.led.set_color('black')
@@ -14,11 +16,11 @@ def bg_thread():
             c.led.set_color('red')
             time.sleep_ms(500)
             if stop: _thread.exit()
-    except Exception as e:
-        print(e)
-        import sys
-        sys.print_exception(e)
-        stop=1
+        except Exception as e:
+            print(e)
+            import sys
+            sys.print_exception(e)
+            stop=1
 
 _thread.start_new_thread(bg_thread, ())
 #main thread
@@ -27,6 +29,10 @@ c.pcd.LClear()
 while stop==0:
 #     print(t)
     try:
+#         print(int(gc.mem_free()), end="")
+#         print(" ", end="")
+#         print(int(gc.mem_alloc()))
+        gc.collect()
         c.lcd.temp(t)
         c.lcd.alltime()
         c.rc.menu(c.b.keys)

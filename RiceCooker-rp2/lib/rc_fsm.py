@@ -35,7 +35,7 @@ class rc_fsm(relay, buzzer):
     def set_fsm(self, f):
         """ set current state """
         i=__import__("fsm."+f,None,None,[f]).fsm
-        print(i)
+        print("set: %s" % i)
         self.fsm=i
         self.mode=self.fsm['mode']
         self.LCD=""
@@ -45,49 +45,63 @@ class rc_fsm(relay, buzzer):
         if self.state not in self.fsm:
             return
         self.rtime=time()-self.stime
+#         print("s: {} {}".format(self.state,self.fsm[self.state].keys()))
         for k in self.fsm[self.state].keys():
-            if type(self.fsm[self.state][k]) is list:
-                lst=self.fsm[self.state][k]
-                if k=='T_gt':
-                    for st in lst:
-                        if time() > st[0]+self.T:
-                            self.next_state(st[1])
-                elif k=='pan_le':
-                    for st in lst:
-                        if float(pan) < float(st[0]):
-                            self.next_state(st[1])
-                elif k=='pan_gt':
-                    for st in lst:
-                        if float(pan) > float(st[0]):
-                            self.next_state(st[1])
-                elif k=='lid_le':
-                    for st in lst:
-                        if float(lid) < float(st[0]):
-                            self.next_state(st[1])
-                elif k=='lid_gt':
-                    for st in lst:
-                        if float(lid) > float(st[0]):
-                            self.next_state(st[1])
+#             print(k)
+            try:
+                if type(self.fsm[self.state][k]) is list:
+                    lst=self.fsm[self.state][k]
+                    if k=='T_gt':
+                        for st in lst:
+                            if time() > st[0]+self.T:
+                                self.next_state(st[1])
+                                return
+                    elif k=='pan_le':
+                        for st in lst:
+                            if float(pan) < float(st[0]):
+                                self.next_state(st[1])
+                                return
+                    elif k=='pan_gt':
+                        for st in lst:
+                            if float(pan) > float(st[0]):
+                                self.next_state(st[1])
+                                return
+                    elif k=='lid_le':
+                        for st in lst:
+                            if float(lid) < float(st[0]):
+                                self.next_state(st[1])
+                                return
+                    elif k=='lid_gt':
+                        for st in lst:
+                            if float(lid) > float(st[0]):
+                                self.next_state(st[1])
+                                return
+            except Exception as e:
+                print("exp: {} {} {}".format(e, k, self.fsm[self.state].keys()))
+                import sys
+                sys.print_exception(e)
+#         print("s0: {} {}".format(self.state,self.fsm[self.state].keys()))
             
     def next_state(self, next='end'):
         """ """
         self.state=""
         self.relay="0/0"
         self.r.add_state(self.relay)
-        print(next)
+        print("state=%s" % next)
         if self.fsm is not None:
             if next.find('/')>0:
                 self.relay=next
                 self.r.add_state(self.relay)
                 self.r.run()
             elif next in self.fsm.keys():
-                print("{}=>{}".format(next,self.fsm[next]))
                 self.state=next
+                print("{}=>{}".format(self.state,self.fsm[self.state]))
                 if next=='start': self.stime=time()
-                self.LCD=self.fsm[next]['LCD']
-                if 'T' in self.fsm[next]:
+                if 'LCD' in self.fsm[self.state]:
+                    self.LCD=self.fsm[self.state]['LCD']
+                if 'T' in self.fsm[self.state]:
                     self.T=time()
-                self.b.buzz(self.fsm[next].get('beep', ""))
+                self.b.buzz(self.fsm[self.state].get('beep', ""))
                 print("{}: {} {} {}".format(self.state, self.LCD, self.T, self.fsm[next].get('beep', ":")))
             else: #end
 #                 self.relay="0/0"
