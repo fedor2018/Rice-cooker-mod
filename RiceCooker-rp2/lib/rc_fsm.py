@@ -32,6 +32,9 @@ class rc_fsm(relay, buzzer):
         self.r=relay(pin_r)
         self.b=buzzer(pin_b)
 
+    def stop(self):
+        r.stop()
+        
     def set_fsm(self, f):
         """ set current state """
         i=__import__("fsm."+f,None,None,[f]).fsm
@@ -77,6 +80,7 @@ class rc_fsm(relay, buzzer):
                                 self.next_state(st[1])
                                 return
             except Exception as e:
+                print(e)
                 print("exp: {} {} {}".format(e, k, self.fsm[self.state].keys()))
                 import sys
                 sys.print_exception(e)

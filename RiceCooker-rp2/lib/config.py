@@ -11,10 +11,10 @@ from rc_fsm import rc_fsm
 
 """
 """
-VT=2.5
+VT=3.3 #2.5
 R1=3250
 R2=9950
-adc=ADC(Pin(29))
+adc=None #ADC(Pin(29))
 pan=   NTC(adc=ADC(Pin(26)), R=R1, Ro=47000, beta=3740, adc_t=adc, Vt=VT)
 lid=   NTC(adc=ADC(Pin(27)), R=R1, Ro=47000, beta=3740, adc_t=adc, Vt=VT)
 heater=NTC(adc=ADC(Pin(28)), R=R2, Ro=90500, beta=3950, adc_t=adc, Vt=VT)
@@ -35,3 +35,5 @@ rc.b.buzz("200:2")
 def get_temp():
     return (pan.r_UP(), lid.r_UP(), heater.r_UP(), pan._vref)
 
+def stop():
+    rc.stop()

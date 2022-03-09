@@ -7,7 +7,7 @@ t=(0, 0, 0, 0)
 stop=0
 def bg_thread():
     global t, stop
-    while 1:
+    while stop==0:
         try:
             t=c.get_temp()
     #         print(t)
@@ -48,6 +48,8 @@ while stop==0:
         import sys
         sys.print_exception(e)
         stop=1
+
+c.del()
 
 """
 import fsm_white
